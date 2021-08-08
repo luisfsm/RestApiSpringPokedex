@@ -13,9 +13,8 @@ import javax.persistence.Table;
 public class ModelPokemon {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private Long IdPokedex;
+	
 	private String pokemon;
 	private String tipo;
 	private String urlImage;
@@ -35,12 +34,7 @@ public class ModelPokemon {
 	}
 	
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getPokemon() {
 		return pokemon;
 	}
