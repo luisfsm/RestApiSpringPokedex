@@ -18,8 +18,6 @@ function insertPokemon(idPokedex,Pokemon,type,url){
 }
 
 
-
-
 var botao = document.querySelector(".btn")
 
 
@@ -29,19 +27,24 @@ botao.addEventListener('click',function(){
   
   
   valorInput = valorInput.toLowerCase();
-  var httpRequisicao = new XMLHttpRequest();  
 
+  var httpRequisicao = new XMLHttpRequest();  
   httpRequisicao.open("GET",`http://localhost:8080/Pokedex/${valorInput}/`,false)
   httpRequisicao.send(null)
 
 
+  if(httpRequisicao.status>=400){
+    console.log("valor digitado errado");
+  }
+
+ 
+
   if(httpRequisicao.status==200 || httpRequisicao.status != null){
 
-    console.log(httpRequisicao.status)
     pokemon  = JSON.parse(httpRequisicao.responseText)
-    //evolucaoPokemon = evolucaoPokemon.evolves_to.evolves_to.evolves_to.species.name;
+
      
-    if(pokemon !=null){
+    if(pokemon !=null && httpRequisicao.status==200 ){
         console.log("existe na base");
         var imgPokemon = document.createElement('img')
         imgPokemon.src=pokemon.urlImage
@@ -62,15 +65,26 @@ botao.addEventListener('click',function(){
         }
     }
 
-    if(pokemon ==null){
+    
+    
+    if(pokemon ==null || httpRequisicao.status>=400){
         httpRequisicao.open("GET",`https://pokeapi.co/api/v2/pokemon/${valorInput}`,false)
         httpRequisicao.send(null)
+
+        /*
+        if(httpRequisicao.status>=400){
+            window.alert("Pokemon invalido");
+            
+            
+        }*/
       
         if(httpRequisicao.status==200){
             var retornoPokemon = JSON.parse(httpRequisicao.responseText)
             var idPokedex = retornoPokemon.id;
             var nomePokemon = retornoPokemon.name;
             var tipoPokemon = retornoPokemon.types[0].type.name;
+            var imagemPokemon = retornoPokemon.sprites.front_default;
+
 
             if(typeof retornoPokemon.types[1]  === "undefined"){
                 console.log("nao possui segundo type")
@@ -79,11 +93,10 @@ botao.addEventListener('click',function(){
                 tipoPokemon +=" / "+retornoPokemon.types[1].type.name
             }
             
-            var imagemPokemon = retornoPokemon.sprites.front_default;
-
+          
             console.log(tipoPokemon);
 
-        insertPokemon(idPokedex,nomePokemon,tipoPokemon, imagemPokemon)
+            insertPokemon(idPokedex,nomePokemon,tipoPokemon, imagemPokemon)
             
 
         var imgPokemon = document.createElement('img')
@@ -104,6 +117,7 @@ botao.addEventListener('click',function(){
         }
       }else{
         alert("Pokemon invalido")
+        document.location.reload(true);
         }
       }
    }
