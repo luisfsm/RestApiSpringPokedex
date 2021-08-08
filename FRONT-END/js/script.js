@@ -70,14 +70,7 @@ botao.addEventListener('click',function(){
     if(pokemon ==null || httpRequisicao.status>=400){
         httpRequisicao.open("GET",`https://pokeapi.co/api/v2/pokemon/${valorInput}`,false)
         httpRequisicao.send(null)
-
-        /*
-        if(httpRequisicao.status>=400){
-            window.alert("Pokemon invalido");
-            
-            
-        }*/
-      
+        
         if(httpRequisicao.status==200){
             var retornoPokemon = JSON.parse(httpRequisicao.responseText)
             var idPokedex = retornoPokemon.id;
