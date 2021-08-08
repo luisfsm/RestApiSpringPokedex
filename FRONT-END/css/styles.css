@@ -1,0 +1,66 @@
+ 
+body {
+    font-family: 'Roboto Mono',monospace;
+    background-image: url("img/background.png");
+    /*background-image: url("https://i.imgur.com/2gfwG.png");*/
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+ 
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+ 
+  }
+  
+  .page-title {
+    color: #ffffff;
+    margin: 0 0 5px;
+  }
+  
+  .page-subtitle {
+    color: #ffffff;
+    margin-top: 5px;
+  }
+  
+  .page-logo {
+    width: 200px;
+  }
+  
+  .calculadora {
+   align-items: center;
+  }
+  
+  p {
+    color: black;
+  }
+  
+  .alura-logo {
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    right:10px;
+  }
+
+.btn{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+.inputTextPokemon{
+   width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}

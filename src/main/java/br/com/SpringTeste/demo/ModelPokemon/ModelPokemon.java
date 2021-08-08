@@ -15,10 +15,24 @@ public class ModelPokemon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
+	private Long IdPokedex;
 	private String pokemon;
 	private String tipo;
+	private String urlImage;
+	
+	
+	public String getUrlImage() {
+		return urlImage;
+	}
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+	public Long getIdPokedex() {
+		return IdPokedex;
+	}
+	public void setIdPokedex(Long idPokedex) {
+		IdPokedex = idPokedex;
+	}
 	
 	
 	public Long getId() {
