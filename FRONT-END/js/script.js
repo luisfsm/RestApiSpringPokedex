@@ -28,23 +28,39 @@ botao.addEventListener('click',function(){
   valorInput = valorInput.value
   
   
-  valorInput = valorInput.toLowerCase()
-  
-;
-  var httpRequisicao = new XMLHttpRequest()  
+  valorInput = valorInput.toLowerCase();
+  var httpRequisicao = new XMLHttpRequest();  
 
   httpRequisicao.open("GET",`http://localhost:8080/Pokedex/${valorInput}/`,false)
   httpRequisicao.send(null)
 
-  var pokemon;
 
   if(httpRequisicao.status==200 || httpRequisicao.status != null){
 
     console.log(httpRequisicao.status)
     pokemon  = JSON.parse(httpRequisicao.responseText)
     //evolucaoPokemon = evolucaoPokemon.evolves_to.evolves_to.evolves_to.species.name;
-
-    console.log(pokemon)
+     
+    if(pokemon !=null){
+        console.log("existe na base");
+        var imgPokemon = document.createElement('img')
+        imgPokemon.src=pokemon.urlImage
+        var descPokemon= document.createElement("p") 
+        var divPokemon = document.querySelector(".resultadoPesquisa")
+        var dadosPokemon = document.createTextNode(`Pokedex nº ${pokemon.idPokedex} Nome:  ${pokemon.pokemon}`)
+        
+        if(document.querySelector("p")){
+          document.querySelector("p").textContent=`Pokedex nº ${pokemon.idPokedex}    Nome:  ${pokemon.pokemon}`
+             if(document.querySelector("img")){
+                document.querySelector(".resultadoPesquisa img").src=imagem;
+               console.log(pokemon);
+            }
+        }else{
+            descPokemon.appendChild(dadosPokemon)
+            divPokemon.appendChild(imgPokemon)
+            divPokemon.appendChild(descPokemon)
+        }
+    }
 
     if(pokemon ==null){
         httpRequisicao.open("GET",`https://pokeapi.co/api/v2/pokemon/${valorInput}`,false)
@@ -85,13 +101,11 @@ botao.addEventListener('click',function(){
             descPokemon.appendChild(dadosPokemon)
             divPokemon.appendChild(imgPokemon)
             divPokemon.appendChild(descPokemon)
-            }
+        }
       }else{
         alert("Pokemon invalido")
+        }
       }
-    }
-}
+   }
    
-}
-
-)
+});
